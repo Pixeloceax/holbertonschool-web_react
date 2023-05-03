@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.1",
     "jquery": "^3.6.4",
     "lodash": "^4.17.21",
     "style-loader": "^3.3.2",
