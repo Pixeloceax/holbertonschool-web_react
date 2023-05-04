@@ -7,9 +7,9 @@ $("body").append(
 );
 
 function updateCounter() {
-  let counter = parseInt($("#count").text()) || 0;
-  counter++;
-  $("#count").text(`${counter}`);
+  let count = parseInt($("#count").text()) || 0;
+  count++;
+  $("#count").text(`${count}`);
 }
 
 $("button").on("click", _.debounce(updateCounter, 500));
