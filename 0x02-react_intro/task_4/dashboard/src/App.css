@@ -1,0 +1,35 @@
+.App-header {
+  display: flex;
+  align-items: center;
+  color: red;
+  font-size: larger;
+  border-bottom: 3px solid red;
+  min-height: 10vh;
+}
+
+.App-header img {
+  height: 250px;
+  margin-right: 1rem;
+}
+
+.App-body {
+  margin-top: 3rem;
+  margin-left: 3rem;
+}
+
+.App-body p {
+  font-size: 1.5rem;
+}
+
+.App-footer {
+  border-top: 3px solid red;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.App-footer p {
+  font-size: 1.5rem;
+}
