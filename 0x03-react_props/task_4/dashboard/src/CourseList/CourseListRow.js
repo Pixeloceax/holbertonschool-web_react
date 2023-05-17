@@ -1,31 +1,27 @@
 import React from "react";
 
-const CourseListRow = ({
-  isHeader = false,
-  textFirstCell,
-  textSecondCell = null,
-}) => {
-  if (isHeader) {
-    if (textSecondCell === null) {
+const CourseListRow = (props) => {
+  if (props.isHeader === true) {
+    if (props.textSecondCell === null) {
       return (
-        <tr>
-          <th colSpan="2">{textFirstCell}</th>
-        </tr>
+        <>
+          <th colspan="2">{props.textFirstCell}</th>
+        </>
       );
     } else {
       return (
-        <tr>
-          <th>{textFirstCell}</th>
-          <th>{textSecondCell}</th>
-        </tr>
+        <>
+          <th>{props.textFirstCell}</th>
+          <th>{props.textSecondCell}</th>
+        </>
       );
     }
   } else {
     return (
-      <tr>
-        <td>{textFirstCell}</td>
-        <td>{textSecondCell}</td>
-      </tr>
+      <>
+        <td>{props.textFirstCell}</td>
+        <td>{props.textSecondCell}</td>
+      </>
     );
   }
 };

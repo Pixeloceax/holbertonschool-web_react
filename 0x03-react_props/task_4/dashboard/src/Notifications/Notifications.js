@@ -3,6 +3,7 @@ import "./Notifications.css";
 import closeIcon from "./close-icon.png";
 import { getLatestNotification } from "../utils/utils";
 import NotificationItem from "./NotificationItem";
+import PropTypes from "prop-types";
 
 const Notifications = ({ displayDrawer }) => {
   const handleButtonClick = () => {
@@ -36,6 +37,14 @@ const Notifications = ({ displayDrawer }) => {
       )}
     </>
   );
+};
+
+Notifications.propTypes = {
+  displayDrawer: PropTypes.bool,
+};
+
+Notifications.defaultProps = {
+  displayDrawer: false,
 };
 
 export default Notifications;
