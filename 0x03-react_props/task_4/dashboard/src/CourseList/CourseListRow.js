@@ -1,30 +1,26 @@
-import { bool, string } from "prop-types";
 import React from "react";
 
 const CourseListRow = ({
-  isHeader = bool ? true : false,
-  textFirstCell = string ? "" : null,
-  textSecondCell = string ? "" : null,
+  isHeader = false,
+  textFirstCell,
+  textSecondCell = null,
 }) => {
-  if (isHeader === true) {
+  if (isHeader) {
     if (textSecondCell === null) {
       return (
         <tr>
-          <th colSpan="2">{textFirstCell}</th>;
+          <th colSpan="2">{textFirstCell}</th>
         </tr>
       );
-    }
-    if (textFirstCell === !null) {
+    } else {
       return (
         <tr>
           <th>{textFirstCell}</th>
-          <th>{textSecondCell}</th>;
+          <th>{textSecondCell}</th>
         </tr>
       );
     }
-  }
-
-  if (isHeader === false) {
+  } else {
     return (
       <tr>
         <td>{textFirstCell}</td>
