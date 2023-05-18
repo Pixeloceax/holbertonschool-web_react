@@ -1,0 +1,13 @@
+.App-header {
+  display: flex;
+  align-items: center;
+  color: red;
+  font-size: larger;
+  border-bottom: 3px solid red;
+  min-height: 10vh;
+}
+
+.App-header img {
+  height: 250px;
+  margin-right: 1rem;
+}
