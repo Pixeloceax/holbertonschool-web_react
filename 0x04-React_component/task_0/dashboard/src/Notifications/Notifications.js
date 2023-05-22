@@ -1,74 +1,85 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./Notifications.css";
-import closeIcon from "./close-icon.png";
-import { getLatestNotification } from "../utils/utils";
+import closeIcon from "../assets/close-icon.png";
 import NotificationItem from "./NotificationItem";
 import PropTypes from "prop-types";
+import NotificationItemShape from "./NotificationItemShape";
 
 class Notifications extends Component {
-  static propTypes = {
-    displayDrawer: PropTypes.bool,
-    listNotifications: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        type: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-        html: PropTypes.object,
-      })
-    ).isRequired,
-  };
+  constructor(props) {
+    super(props);
+    this.markAsRead = this.markAsRead.bind(this);
+  }
 
-  static defaultProps = {
-    displayDrawer: false,
-  };
-
-  markAsRead = (id) => {
+  markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
-  };
-
-  handleButtonClick = () => {
-    console.log("Close button has been clicked");
-  };
+  }
 
   render() {
-    const { displayDrawer, listNotifications } = this.props;
+    let { displayDrawer, listNotifications } = this.props;
 
     return (
-      <>
+      <div className="NotificationsComponent">
         <div className="menuItem">Your notifications</div>
         {displayDrawer && (
           <div className="Notifications">
             <button
-              style={{ float: "right", height: "20px", width: "20px" }}
+              style={{
+                color: "#3a3a3a",
+                fontWeight: "bold",
+                background: "none",
+                border: "none",
+                fontSize: "15px",
+                position: "absolute",
+                right: "3px",
+                top: "3px",
+                cursor: "pointer",
+                outline: "none",
+              }}
               aria-label="Close"
-              onClick={this.handleButtonClick}
+              onClick={(e) => {
+                console.log("Close button has been clicked");
+              }}
             >
-              <img
-                style={{ height: "20px", width: "20px" }}
-                src={closeIcon}
-                alt="Close icon"
-              />
+              <img src={closeIcon} alt="close icon" />
             </button>
-            {listNotifications.length === 0 ? (
+            {listNotifications.length === 0 && (
               <p>No new notification for now</p>
-            ) : (
-              <ul className="notifications-list">
-                {listNotifications.map((notification) => (
-                  <NotificationItem
-                    key={notification.id}
-                    type={notification.type}
-                    value={notification.value}
-                    html={notification.html}
-                    markAsRead={this.markAsRead}
-                  />
-                ))}
-              </ul>
+            )}
+            {listNotifications.length > 0 && (
+              <Fragment>
+                <p>Here is the list of notifications</p>
+                <ul>
+                  {listNotifications.map((notif) => {
+                    return (
+                      <NotificationItem
+                        key={notif.id}
+                        id={notif.id}
+                        type={notif.type}
+                        value={notif.value}
+                        html={notif.html}
+                        markAsRead={this.markAsRead}
+                      />
+                    );
+                  })}
+                </ul>
+              </Fragment>
             )}
           </div>
         )}
-      </>
+      </div>
     );
   }
 }
+
+Notifications.propTypes = {
+  displayDrawer: PropTypes.bool,
+  listNotifications: PropTypes.arrayOf(NotificationItemShape),
+};
+
+Notifications.defaultProps = {
+  displayDrawer: false,
+  listNotifications: [],
+};
 
 export default Notifications;

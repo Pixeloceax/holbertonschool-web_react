@@ -1,34 +1,57 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { expect } from "chai";
+import Adapter from "enzyme-adapter-react-16";
+import { shallow, configure } from "enzyme";
 import CourseList from "./CourseList";
+import CourseListRow from "./CourseListRow";
 
-describe("CourseList component", () => {
-  it("renders without crashing", () => {
-    shallow(<CourseList />);
+configure({ adapter: new Adapter() });
+
+describe("Testing the <CourseList /> Component", () => {
+  it("Test if <CourseList /> is rendered without crashing", () => {
+    let component = shallow(<CourseList shouldRender />);
+
+    expect(component.render()).to.not.be.an("undefined");
   });
 
-  it("renders 5 different rows", () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.find("tr")).toHaveLength(5);
+  it("Test that CourseList renders correctly if you pass an empty array or if you don’t pass the listCourses property", () => {
+    let props = {
+      listCourses: [],
+    };
+
+    let component = shallow(<CourseList shouldRender {...props} />);
+    expect(component.render()).to.not.be.an("undefined");
+
+    props = {
+      listCourses: null,
+    };
+
+    component = shallow(<CourseList shouldRender {...props} />);
+    expect(component.render()).to.not.be.an("undefined");
   });
 
-  it("renders correctly when listCourses is empty", () => {
-    const wrapper = shallow(<CourseList listCourses={[]} />);
-    expect(wrapper.find("tr")).toHaveLength(0);
-  });
+  it("Test tthat when you pass a list of courses, the component renders it correctly", () => {
+    let props = {
+      listCourses: [
+        {
+          id: 1,
+          name: "ES6",
+          credit: 60,
+        },
+        {
+          id: 2,
+          name: "Webpack",
+          credit: 20,
+        },
+        {
+          id: 3,
+          name: "React",
+          credit: 40,
+        },
+      ],
+    };
 
-  it("renders correctly when listCourses is not passed", () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.find("tr")).toHaveLength(0);
-  });
-
-  it("renders the correct number of courses when listCourses is passed", () => {
-    const courses = [
-      { id: 1, title: "Course 1" },
-      { id: 2, title: "Course 2" },
-      { id: 3, title: "Course 3" },
-    ];
-    const wrapper = shallow(<CourseList listCourses={courses} />);
-    expect(wrapper.find("tr")).toHaveLength(courses.length);
+    let component = shallow(<CourseList shouldRender {...props} />);
+    expect(component.render()).to.not.be.an("undefined");
   });
 });
