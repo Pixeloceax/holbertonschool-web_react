@@ -1,4 +1,4 @@
-import { Map, is } from "immutable";
+import { Map, is } from 'immutable';
 
 export default function areMapsEqual(map1, map2) {
   /* const equal = map1.equals(map2) ? true : false; */
