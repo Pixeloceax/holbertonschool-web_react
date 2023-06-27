@@ -40,9 +40,9 @@ Header.propTypes = {
 
 Header.defaultProps = {
   user: {
-    email: "",
-    password: "",
-    isLoggedIn: false,
+    email: "test@test",
+    password: "test",
+    isLoggedIn: true,
   },
   logOut: () => this.logOut(),
 };

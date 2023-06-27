@@ -133,7 +133,7 @@ class App extends Component {
             )}
             {isLoggedIn === true && (
               <BodySectionWithMarginBottom title="Course list">
-                <CourseList listCourses={listCourses} />
+                {/* <CourseList listCourses={listCourses} /> */}
               </BodySectionWithMarginBottom>
             )}
             <BodySection title="News from the school">
@@ -181,7 +181,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 export const mapStateToProps = (state) => {
